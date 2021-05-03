@@ -9,6 +9,8 @@ public class rot : MonoBehaviour
     public float Limit;
     public Transform car;
     float yRotation;
+
+    bool stopped = false;
     private void Start()
     {
         //MinLimit = 360 + car.GetComponent<Drive>().RotationLimits.x;
@@ -44,5 +46,19 @@ public class rot : MonoBehaviour
         y = Input.GetAxis("Horizontal") * speed;
         RotateObject(y);
     }
-    public void SetDefaultRotation() => transform.localRotation = Quaternion.identity;
+    public void Stop()
+    {
+        stopped = true;
+    }
+    public void SetDefaultRotation()
+    {
+        /*float y = transform.localRotation.y;
+        for (int i = 0; i < 100; i++)
+        {
+            if (stopped) yield break;
+            transform.localRotation = new Quaternion(0, 0, -y/100*i, transform.localRotation.w);
+            yield return new WaitForSeconds(0.001f);
+        }*/
+        transform.localRotation = Quaternion.identity;
+    }
 }
